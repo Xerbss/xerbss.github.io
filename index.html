@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Piegeon Studios</title>
+<link rel="icon" type="image/png" href="site-assets/studio-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-cream:#FAF3E6;
+    --ink:#1E2A32;
+    --sky:#6FA8C9;
+    --sky-deep:#3F7EA6;
+    --gold:#E3A73F;
+    --teal:#2F7A6E;
+    --clay:#C1523B;
+    --paper:#FFFDF8;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg-cream);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fredoka',sans-serif;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+
+  /* NAV */
+  .nav{
+    position:absolute;
+    top:0;left:0;right:0;
+    z-index:10;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:22px 6vw;
+  }
+  .nav-brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .nav-brand img{
+    width:44px;height:44px;
+    border-radius:50%;
+    border:2px solid rgba(255,255,255,0.85);
+    object-fit:cover;
+  }
+  .nav-brand span{
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+    font-size:1.15rem;
+    color:#fff;
+    text-shadow:0 2px 10px rgba(0,0,0,0.35);
+  }
+  .nav a.contact-link{
+    font-size:0.9rem;
+    font-weight:500;
+    color:#fff;
+    text-decoration:none;
+    background:rgba(0,0,0,0.28);
+    padding:9px 18px;
+    border-radius:999px;
+    backdrop-filter:blur(4px);
+    border:1px solid rgba(255,255,255,0.3);
+    transition:background 0.2s ease;
+  }
+  .nav a.contact-link:hover{background:rgba(0,0,0,0.45);}
+
+  /* HERO */
+  .hero{
+    position:relative;
+    height:88vh;
+    min-height:520px;
+    overflow:hidden;
+  }
+  .hero img{
+    width:100%;height:100%;
+    object-fit:cover;
+    object-position:center 60%;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(20,35,45,0.15) 0%, rgba(15,25,32,0.15) 45%, rgba(12,20,26,0.88) 100%);
+  }
+  .hero-copy{
+    position:absolute;
+    left:6vw;right:6vw;
+    bottom:9%;
+    z-index:2;
+    color:#fff;
+    max-width:640px;
+  }
+  .hero-copy h1{
+    font-size:clamp(2.4rem,6vw,4.2rem);
+    line-height:1.02;
+    font-weight:700;
+    text-shadow:0 4px 24px rgba(0,0,0,0.35);
+  }
+  .hero-copy p{
+    margin-top:16px;
+    font-size:1.08rem;
+    font-weight:400;
+    color:#EAF2F6;
+    max-width:480px;
+    line-height:1.55;
+  }
+
+  /* SCALLOP DIVIDER — pie-crust edge, the signature element */
+  .crust{
+    display:block;
+    width:100%;
+    height:46px;
+    margin-top:-2px;
+  }
+  .crust path{fill:var(--paper);}
+
+  /* SECTIONS */
+  section{
+    padding:90px 6vw;
+  }
+  .about{
+    background:var(--paper);
+    padding-top:10px;
+  }
+  .about-inner{
+    max-width:680px;
+    margin:0 auto;
+    text-align:center;
+  }
+  .eyebrow{
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+    font-size:0.8rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--teal);
+    margin-bottom:14px;
+    display:block;
+  }
+  .about h2{
+    font-size:clamp(1.6rem,3.4vw,2.3rem);
+    line-height:1.25;
+    font-weight:600;
+    color:var(--ink);
+  }
+  .about p.lede{
+    margin-top:20px;
+    font-size:1.05rem;
+    line-height:1.7;
+    color:#3C4A52;
+  }
+
+  /* GAMES */
+  .games{
+    background:var(--bg-cream);
+  }
+  .games-head{
+    text-align:center;
+    max-width:600px;
+    margin:0 auto 50px;
+  }
+  .games-head h2{
+    font-size:clamp(1.7rem,3.6vw,2.4rem);
+    font-weight:600;
+  }
+  .game-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:28px;
+    max-width:940px;
+    margin:0 auto;
+  }
+  @media (max-width:720px){
+    .game-grid{grid-template-columns:1fr;}
+  }
+  .game-card{
+    background:var(--paper);
+    border-radius:22px;
+    padding:34px 30px 30px;
+    box-shadow:0 12px 32px rgba(30,42,50,0.08);
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+    border:1px solid rgba(30,42,50,0.06);
+  }
+  .game-icon-row{
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .game-icon-row img{
+    width:64px;height:64px;
+    border-radius:16px;
+    object-fit:cover;
+    box-shadow:0 6px 16px rgba(0,0,0,0.12);
+  }
+  .game-card h3{
+    font-size:1.3rem;
+    font-weight:600;
+  }
+  .game-tag{
+    font-size:0.72rem;
+    font-weight:600;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--sky-deep);
+  }
+  .game-card p{
+    font-size:0.98rem;
+    line-height:1.6;
+    color:#4A5860;
+    margin:0;
+  }
+  .btn-play{
+    margin-top:auto;
+    align-self:flex-start;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--ink);
+    color:#fff;
+    text-decoration:none;
+    font-weight:500;
+    font-size:0.92rem;
+    padding:11px 20px;
+    border-radius:999px;
+    transition:transform 0.15s ease, background 0.2s ease;
+  }
+  .btn-play:hover{background:var(--teal); transform:translateY(-1px);}
+
+  /* CONTACT */
+  .contact{
+    background:var(--ink);
+    color:#F5EFE3;
+    text-align:center;
+    border-radius:0;
+  }
+  .contact-inner{
+    max-width:560px;
+    margin:0 auto;
+  }
+  .contact h2{
+    font-size:clamp(1.6rem,3.4vw,2.2rem);
+    font-weight:600;
+    color:#fff;
+  }
+  .contact p{
+    margin-top:14px;
+    font-size:1rem;
+    line-height:1.6;
+    color:#C9D3D8;
+  }
+  .btn-email{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    margin-top:28px;
+    background:var(--gold);
+    color:#1E2A32;
+    text-decoration:none;
+    font-weight:600;
+    font-size:1rem;
+    padding:14px 28px;
+    border-radius:999px;
+    transition:transform 0.15s ease, box-shadow 0.2s ease;
+  }
+  .btn-email:hover{transform:translateY(-2px); box-shadow:0 10px 24px rgba(227,167,63,0.35);}
+
+  footer{
+    background:var(--ink);
+    color:#8FA0A8;
+    text-align:center;
+    font-size:0.82rem;
+    padding:26px 6vw 34px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-brand">
+    <img src="site-assets/studio-icon.png" alt="Piegeon Studios icon">
+    <span>Piegeon Studios</span>
+  </div>
+  <a class="contact-link" href="#contact">Contact</a>
+</nav>
+
+<div class="hero">
+  <img src="site-assets/studio-background.png" alt="A pigeon flying with a pie, illustrated in a warm animated style">
+  <div class="hero-copy">
+    <h1>Small studio.<br>Big pigeon energy.</h1>
+    <p>Piegeon Studios is a one-person indie game studio, making physics-based mobile games with a little too much personality.</p>
+  </div>
+</div>
+
+<svg class="crust" viewBox="0 0 1200 46" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0,46 L0,20 Q25,0 50,20 T100,20 T150,20 T200,20 T250,20 T300,20 T350,20 T400,20 T450,20 T500,20 T550,20 T600,20 T650,20 T700,20 T750,20 T800,20 T850,20 T900,20 T950,20 T1000,20 T1050,20 T1100,20 T1150,20 T1200,20 L1200,46 Z"></path>
+</svg>
+
+<section class="about">
+  <div class="about-inner">
+    <span class="eyebrow">About the studio</span>
+    <h2>Built by one person, shipped one launch at a time.</h2>
+    <p class="lede">Based in Poland, Piegeon Studios designs and builds mobile games solo — from gameplay code to pixel art to the store listing nobody reads. The studio's name says it plainly: pigeons, a little chaos, and games that don't take themselves too seriously.</p>
+  </div>
+</section>
+
+<section class="games" id="games">
+  <div class="games-head">
+    <span class="eyebrow">Currently on Google Play</span>
+    <h2>The games so far</h2>
+  </div>
+  <div class="game-grid">
+
+    <div class="game-card">
+      <div class="game-icon-row">
+        <img src="site-assets/catsvsdogs-icon.png" alt="Cats vs Dogs app icon">
+        <div>
+          <span class="game-tag">Physics · Slingshot</span>
+          <h3>Cats vs Dogs</h3>
+        </div>
+      </div>
+      <p>Launch cats with unique powers across physics-based levels to take down the dogs standing in your way. Slash, bounce, and grapple your way through.</p>
+      <a class="btn-play" href="https://play.google.com/store/apps/details?id=com.piegeon.catsvsdogs" target="_blank" rel="noopener">Get it on Google Play →</a>
+    </div>
+
+    <div class="game-card">
+      <div class="game-icon-row">
+        <img src="site-assets/talkingpigeon-icon.png" alt="Talking Pigeon app icon">
+        <div>
+          <span class="game-tag">Voice · Interactive</span>
+          <h3>Talking Pigeon</h3>
+        </div>
+      </div>
+      <p>Record, repeat, and remix your voice through a pigeon that talks back. Three modes of sound-based nonsense: Repeat, Sound Effects, and Yes and No.</p>
+      <a class="btn-play" href="https://play.google.com/store/apps/details?id=com.piegeon.talkingpigeon" target="_blank" rel="noopener">Get it on Google Play →</a>
+    </div>
+
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <span class="eyebrow" style="color:var(--gold);">Get in touch</span>
+    <h2>Business & support inquiries</h2>
+    <p>For partnerships, press, or anything else — reach out directly by email.</p>
+    <a class="btn-email" href="mailto:diddyklein69@gmail.com?subject=Piegeon%20Studios%20Inquiry">✉ diddyklein69@gmail.com</a>
+  </div>
+</section>
+
+<footer>
+  © 2026 Piegeon Studios. All rights reserved.
+</footer>
+
+</body>
+</html>
