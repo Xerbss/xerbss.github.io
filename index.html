@@ -78,6 +78,74 @@
   }
   .nav a.contact-link:hover{background:rgba(0,0,0,0.45);}
 
+  /* NAV LINKS GROUP + PAGES DROPDOWN */
+  .nav-links{
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .pages-dropdown{
+    position:relative;
+  }
+  .pages-trigger{
+    font-size:0.9rem;
+    font-weight:500;
+    color:#fff;
+    background:rgba(0,0,0,0.28);
+    padding:9px 16px;
+    border-radius:999px;
+    backdrop-filter:blur(4px);
+    border:1px solid rgba(255,255,255,0.3);
+    cursor:pointer;
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    transition:background 0.2s ease;
+    font-family:'Inter',sans-serif;
+  }
+  .pages-trigger:hover{background:rgba(0,0,0,0.45);}
+  .pages-trigger svg{
+    width:10px;height:10px;
+    transition:transform 0.18s ease;
+    flex-shrink:0;
+  }
+  .pages-dropdown.open .pages-trigger svg{transform:rotate(180deg);}
+  .pages-menu{
+    position:absolute;
+    top:calc(100% + 8px);
+    right:0;
+    min-width:220px;
+    background:var(--paper);
+    border-radius:14px;
+    box-shadow:0 16px 40px rgba(15,20,26,0.28);
+    padding:8px;
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(-6px);
+    transition:opacity 0.16s ease, transform 0.16s ease, visibility 0.16s;
+  }
+  .pages-dropdown.open .pages-menu{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+  }
+  .pages-menu a{
+    display:block;
+    padding:10px 14px;
+    border-radius:9px;
+    font-size:0.92rem;
+    font-weight:500;
+    color:var(--ink);
+    text-decoration:none;
+    transition:background 0.14s ease;
+  }
+  .pages-menu a:hover{background:var(--bg-cream);}
+  .pages-menu .menu-divider{
+    height:1px;
+    background:rgba(30,42,50,0.08);
+    margin:6px 4px;
+  }
+
   /* HERO */
   .hero{
     position:relative;
@@ -240,6 +308,29 @@
     transition:transform 0.15s ease, background 0.2s ease;
   }
   .btn-play:hover{background:var(--teal); transform:translateY(-1px);}
+  .btn-row{
+    margin-top:auto;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .btn-row .btn-play{margin-top:0;}
+  .btn-itch{
+    align-self:flex-start;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:transparent;
+    color:var(--ink);
+    text-decoration:none;
+    font-weight:500;
+    font-size:0.92rem;
+    padding:10px 20px;
+    border-radius:999px;
+    border:1.5px solid rgba(30,42,50,0.18);
+    transition:transform 0.15s ease, border-color 0.2s ease, background 0.2s ease;
+  }
+  .btn-itch:hover{border-color:var(--clay); background:rgba(193,82,59,0.06); transform:translateY(-1px);}
 
   /* CONTACT */
   .contact{
@@ -300,8 +391,44 @@
     <img src="site-assets/studio-icon.png" alt="Piegeon Studios icon">
     <span>Piegeon Studios</span>
   </div>
-  <a class="contact-link" href="#contact">Contact</a>
+  <div class="nav-links">
+    <div class="pages-dropdown" id="pagesDropdown">
+      <button class="pages-trigger" id="pagesTrigger" aria-haspopup="true" aria-expanded="false">
+        Other pages
+        <svg viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="pages-menu" id="pagesMenu">
+        <a href="/privacy-policy">Cats vs Dogs — Privacy Policy</a>
+        <a href="/TalkingPigeonPrivacyPolicy">Talking Pigeon — Privacy Policy</a>
+      </div>
+    </div>
+    <a class="contact-link" href="#contact">Contact</a>
+  </div>
 </nav>
+
+<script>
+  (function(){
+    var dropdown = document.getElementById('pagesDropdown');
+    var trigger = document.getElementById('pagesTrigger');
+    trigger.addEventListener('click', function(e){
+      e.stopPropagation();
+      var isOpen = dropdown.classList.toggle('open');
+      trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+    document.addEventListener('click', function(e){
+      if(!dropdown.contains(e.target)){
+        dropdown.classList.remove('open');
+        trigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape'){
+        dropdown.classList.remove('open');
+        trigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+  })();
+</script>
 
 <div class="hero">
   <img src="site-assets/studio-background.png" alt="A pigeon flying with a pie, illustrated in a warm animated style">
@@ -339,7 +466,10 @@
         </div>
       </div>
       <p>Launch cats with unique powers across physics-based levels to take down the dogs standing in your way. Slash, bounce, and grapple your way through.</p>
-      <a class="btn-play" href="https://play.google.com/store/apps/details?id=com.piegeon.catsvsdogs" target="_blank" rel="noopener">Get it on Google Play →</a>
+      <div class="btn-row">
+        <a class="btn-play" href="https://play.google.com/store/apps/details?id=com.piegeon.catsvsdogs" target="_blank" rel="noopener">Get it on Google Play →</a>
+        <a class="btn-itch" href="https://piegeon-studios.itch.io/cats-vs-dogs" target="_blank" rel="noopener">Play on itch.io →</a>
+      </div>
     </div>
 
     <div class="game-card">
