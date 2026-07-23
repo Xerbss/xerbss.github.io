@@ -264,6 +264,11 @@
     flex-direction:column;
     gap:16px;
     border:1px solid rgba(30,42,50,0.06);
+    transition:transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .game-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 24px 48px rgba(30,42,50,0.13);
   }
   .game-icon-row{
     display:flex;
@@ -377,6 +382,23 @@
     text-align:center;
     font-size:0.82rem;
     padding:26px 6vw 34px;
+    border-top:1px solid rgba(255,255,255,0.07);
+  }
+
+  /* MOBILE */
+  @media (max-width:720px){
+    section{ padding:60px 5vw; }
+    .about{ padding-top:10px; }
+    .game-grid{ grid-template-columns:1fr; }
+  }
+  @media (max-width:520px){
+    .nav{ padding:14px 4vw; }
+    .nav-brand span{ font-size:1rem; }
+    .pages-trigger{ padding:8px 12px; font-size:0.82rem; }
+    .nav a.contact-link{ padding:8px 14px; font-size:0.82rem; }
+    .hero{ height:92vh; }
+    .hero-copy p{ font-size:0.97rem; }
+    .game-card{ padding:26px 22px 22px; }
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -453,7 +475,7 @@
 
 <section class="games" id="games">
   <div class="games-head">
-    <span class="eyebrow">Currently on Google Play</span>
+    <span class="eyebrow">Available on Google Play &amp; itch.io</span>
     <h2>The games so far</h2>
   </div>
   <div class="game-grid">
@@ -482,7 +504,10 @@
         </div>
       </div>
       <p>Record, repeat, and remix your voice through a pigeon that talks back. Three modes of sound-based nonsense: Repeat, Sound Effects, and Yes and No.</p>
-      <a class="btn-play" href="https://play.google.com/store/apps/details?id=com.piegeon.talkingpigeon" target="_blank" rel="noopener">Get it on Google Play →</a>
+      <div class="btn-row">
+        <a class="btn-play" href="https://play.google.com/store/apps/details?id=com.piegeon.talkingpigeon" target="_blank" rel="noopener">Get it on Google Play →</a>
+        <a class="btn-itch" href="https://piegeon-studios.itch.io/talking-pigeon" target="_blank" rel="noopener">Play on itch.io →</a>
+      </div>
     </div>
 
   </div>
