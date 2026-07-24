@@ -23,7 +23,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Piegeon Studios","url":"https://piegeon.de","logo":"https://piegeon.de/site-assets/studio-icon.png","email":"diddyklein69@gmail.com","sameAs":["https://piegeon-studios.itch.io"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Piegeon Studios","url":"https://piegeon.de","logo":"https://piegeon.de/site-assets/studio-icon.png","email":"diddyklein69@gmail.com","sameAs":["https://piegeon-studios.itch.io","https://www.instagram.com/piegeon_studios/","https://www.tiktok.com/@piegeon_studios"]}</script>
 <style>
   :root{
     --bg-cream:#FAF3E6;
@@ -391,6 +391,26 @@
   }
   .btn-email:hover{transform:translateY(-2px); box-shadow:0 10px 24px rgba(227,167,63,0.35);}
 
+  .social-links{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin-bottom:18px;
+  }
+  .social-link{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:42px;height:42px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.08);
+    color:#C9D3D8;
+    text-decoration:none;
+    border:1px solid rgba(255,255,255,0.1);
+    transition:background 0.2s ease, color 0.2s ease, transform 0.15s ease;
+  }
+  .social-link:hover{background:rgba(255,255,255,0.18); color:#fff; transform:translateY(-2px);}
+  .social-link svg{width:18px;height:18px;flex-shrink:0;}
   footer{
     background:var(--ink);
     color:#8FA0A8;
@@ -538,6 +558,17 @@
 </section>
 
 <footer>
+  <div class="social-links">
+    <a class="social-link" href="https://www.instagram.com/piegeon_studios/" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+    </a>
+    <a class="social-link" href="https://www.tiktok.com/@piegeon_studios" target="_blank" rel="noopener" aria-label="TikTok">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.81 1.55V6.78a4.85 4.85 0 01-1.04-.09z"/></svg>
+    </a>
+    <a class="social-link" href="https://play.google.com/store/apps/dev?id=8822070114594190568" target="_blank" rel="noopener" aria-label="Google Play">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.37.2.81.19 1.24-.07l11.37-6.55-2.55-2.55-10.06 9.17zm-1.06-20.5A1.5 1.5 0 002 4.1v15.8c0 .47.16.88.44 1.16l.06.06 8.85-8.85v-.21L2.12 3.26zm18.1 8.17l-2.4-1.38-2.82 2.82 2.82 2.82 2.41-1.39a1.5 1.5 0 000-2.87zM4.42.31C4 .05 3.55.04 3.18.24l10.06 9.17 2.55-2.55L4.42.31z"/></svg>
+    </a>
+  </div>
   © 2026 Piegeon Studios. All rights reserved.
 </footer>
 
