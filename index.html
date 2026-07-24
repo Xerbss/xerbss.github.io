@@ -247,10 +247,78 @@
     color:#3C4A52;
   }
 
+  /* HERO CTA */
+  .btn-hero{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin-top:28px;
+    background:rgba(255,255,255,0.14);
+    color:#fff;
+    text-decoration:none;
+    font-weight:500;
+    font-size:1rem;
+    padding:12px 26px;
+    border-radius:999px;
+    backdrop-filter:blur(6px);
+    border:1px solid rgba(255,255,255,0.32);
+    transition:background 0.2s ease, transform 0.15s ease;
+  }
+  .btn-hero:hover{background:rgba(255,255,255,0.24); transform:translateY(-2px);}
+
+  /* STATS ROW */
+  .stats-row{
+    display:flex;
+    justify-content:center;
+    gap:48px;
+    margin-top:40px;
+    padding-top:36px;
+    border-top:1px solid rgba(30,42,50,0.08);
+  }
+  .stat-num{
+    font-family:'Fredoka',sans-serif;
+    font-size:1.8rem;
+    font-weight:700;
+    color:var(--ink);
+    display:block;
+    line-height:1;
+  }
+  .stat-label{
+    font-size:0.75rem;
+    text-transform:uppercase;
+    letter-spacing:0.11em;
+    color:#7A8A92;
+    margin-top:6px;
+    display:block;
+  }
+  @media(max-width:420px){
+    .stats-row{gap:24px;}
+    .stat-num{font-size:1.4rem;}
+  }
+
+  /* FADE-UP ANIMATION */
+  .fade-up{
+    opacity:0;
+    transform:translateY(24px);
+    transition:opacity 0.55s ease, transform 0.55s ease;
+  }
+  .fade-up.visible{opacity:1;transform:translateY(0);}
+  .fade-up:nth-child(2){transition-delay:0.1s;}
+  .fade-up:nth-child(3){transition-delay:0.2s;}
+  @media(prefers-reduced-motion:reduce){
+    .fade-up{opacity:1;transform:none;}
+  }
+
   /* GAMES */
   .games{
     background:var(--bg-cream);
+    background-image:radial-gradient(circle, rgba(30,42,50,0.045) 1px, transparent 1px);
+    background-size:22px 22px;
   }
+
+  /* DARK CRUST — transition from cream to ink */
+  .crust--dark{background:var(--bg-cream);}
+  .crust--dark path{fill:var(--ink);}
   .games-head{
     text-align:center;
     max-width:600px;
@@ -493,6 +561,7 @@
   <div class="hero-copy">
     <h1>Small studio.<br>Big pigeon energy.</h1>
     <p>Piegeon Studios makes physics-based mobile games. One person, one studio, based in Poland.</p>
+    <a class="btn-hero" href="#games">Explore our games →</a>
   </div>
 </div>
 
@@ -501,10 +570,15 @@
 </svg>
 
 <section class="about">
-  <div class="about-inner">
+  <div class="about-inner fade-up">
     <span class="eyebrow">About the studio</span>
     <h2>Built by one person, shipped one launch at a time.</h2>
     <p class="lede">Based in Poland, Piegeon Studios designs and ships mobile games solo — gameplay code, pixel art, the whole thing. Named after pigeons. Makes games that are physics-based, a bit weird, and actually fun.</p>
+    <div class="stats-row">
+      <div><span class="stat-num">2</span><span class="stat-label">Games</span></div>
+      <div><span class="stat-num">1</span><span class="stat-label">Developer</span></div>
+      <div><span class="stat-num">PL</span><span class="stat-label">Poland</span></div>
+    </div>
   </div>
 </section>
 
@@ -515,7 +589,7 @@
   </div>
   <div class="game-grid">
 
-    <div class="game-card">
+    <div class="game-card fade-up">
       <div class="game-icon-row">
         <img src="site-assets/catsvsdogs-icon.png" alt="Cats vs Dogs app icon" width="64" height="64" loading="lazy">
         <div>
@@ -530,7 +604,7 @@
       </div>
     </div>
 
-    <div class="game-card">
+    <div class="game-card fade-up">
       <div class="game-icon-row">
         <img src="site-assets/talkingpigeon-icon.png" alt="Talking Pigeon app icon" width="64" height="64" loading="lazy">
         <div>
@@ -548,8 +622,12 @@
   </div>
 </section>
 
+<svg class="crust crust--dark" viewBox="0 0 1200 46" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0,46 L0,20 Q25,0 50,20 T100,20 T150,20 T200,20 T250,20 T300,20 T350,20 T400,20 T450,20 T500,20 T550,20 T600,20 T650,20 T700,20 T750,20 T800,20 T850,20 T900,20 T950,20 T1000,20 T1050,20 T1100,20 T1150,20 T1200,20 L1200,46 Z"></path>
+</svg>
+
 <section class="contact" id="contact">
-  <div class="contact-inner">
+  <div class="contact-inner fade-up">
     <span class="eyebrow" style="color:var(--gold);">Get in touch</span>
     <h2>Business & support inquiries</h2>
     <p>For partnerships, press, or anything else — reach out directly by email.</p>
@@ -572,5 +650,20 @@
   © 2026 Piegeon Studios. All rights reserved.
 </footer>
 
+<script>
+  (function(){
+    var els = document.querySelectorAll('.fade-up');
+    if(!els.length || !('IntersectionObserver' in window)) {
+      els.forEach(function(el){ el.classList.add('visible'); });
+      return;
+    }
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }
+      });
+    }, {threshold:0.12});
+    els.forEach(function(el){ obs.observe(el); });
+  })();
+</script>
 </body>
 </html>
