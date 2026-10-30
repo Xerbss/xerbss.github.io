@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="canonical" href="https://piegeon.de/" />
 <title>Piegeon Studios — Indie Mobile Games</title>
-<meta name="description" content="Piegeon Studios makes physics-based mobile games from Poland — Cats vs Dogs and Talking Pigeon. Available on Google Play and itch.io.">
+<meta name="description" content="Piegeon Studios makes physics-based mobile games from Poland — Cats vs Dogs, Talking Pigeon and Shiba no Tsuri. Available on Google Play and itch.io.">
 <link rel="icon" type="image/png" sizes="512x512" href="site-assets/studio-icon.png">
 <link rel="apple-touch-icon" href="site-assets/studio-icon.png">
 <meta name="theme-color" content="#FAF3E6">
@@ -338,6 +338,14 @@
   @media (max-width:720px){
     .game-grid{grid-template-columns:1fr;}
   }
+  /* odd last card: centre it on its own row */
+  @media (min-width:721px){
+    .game-card:last-child:nth-child(odd){
+      grid-column:1 / -1;
+      justify-self:center;
+      width:calc(50% - 14px);
+    }
+  }
   .game-card{
     background:var(--paper);
     border-radius:22px;
@@ -576,7 +584,7 @@
     <h2>Built by one person, shipped one launch at a time.</h2>
     <p class="lede">Based in Poland, Piegeon Studios designs and ships mobile games solo — gameplay code, pixel art, the whole thing. Named after pigeons. Makes games that are physics-based, a bit weird, and actually fun.</p>
     <div class="stats-row">
-      <div><span class="stat-num">2</span><span class="stat-label">Games</span></div>
+      <div><span class="stat-num">3</span><span class="stat-label">Games</span></div>
       <div><span class="stat-num">1</span><span class="stat-label">Developer</span></div>
       <div><span class="stat-num">PL</span><span class="stat-label">Poland</span></div>
     </div>
@@ -617,6 +625,21 @@
       <div class="btn-row">
         <a class="btn-play" href="https://play.google.com/store/apps/details?id=com.piegeon.talkingpigeon" target="_blank" rel="noopener">Get it on Google Play →</a>
         <a class="btn-itch" href="https://piegeon-studios.itch.io/talking-pigeon" target="_blank" rel="noopener">Play on itch.io →</a>
+      </div>
+    </div>
+
+    <div class="game-card fade-up">
+      <div class="game-icon-row">
+        <img src="site-assets/shibanotsuri-icon.png" alt="Shiba no Tsuri app icon" width="64" height="64" loading="lazy">
+        <div>
+          <span class="game-tag">Fishing · Casual</span>
+          <h3>Shiba no Tsuri</h3>
+        </div>
+      </div>
+      <p>Grab a rod and go fishing with a laid-back shiba. Reel in fish, earn cash, fill out your catch catalog, and upgrade your rods, boats, and gear as you go.</p>
+      <div class="btn-row">
+        <a class="btn-play" href="https://play.google.com/store/apps/details?id=com.piegeon.shibanotsuri" target="_blank" rel="noopener">Get it on Google Play →</a>
+        <a class="btn-itch" href="https://piegeon-studios.itch.io/shiba-no-tsuri" target="_blank" rel="noopener">Play on itch.io →</a>
       </div>
     </div>
 
