@@ -208,6 +208,8 @@
     width:100%;
     height:46px;
     margin-top:-2px;
+    margin-bottom:-1px;
+    position:relative;
   }
   .crust path{fill:var(--paper);}
 
@@ -317,7 +319,7 @@
   }
 
   /* DARK CRUST — transition from cream to ink */
-  .crust--dark{background:var(--bg-cream);}
+  .crust--dark{background:linear-gradient(var(--bg-cream) 80%, var(--ink) 80%);}
   .crust--dark path{fill:var(--ink);}
   .games-head{
     text-align:center;
